@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Header from "@/components/common/header/Header";
 import SearchBar from "@/components/common/searchBar/SearchBar";
 import Nav from "@/components/common/navigation/Nav";
@@ -5,10 +7,11 @@ import Footer from "@/components/common/footer/Footer";
 import Card from "./components/Card";
 // CSS
 import styles from "./styles/index.module.scss";
-import axios from "axios";
-import { useEffect } from "react";
+
+import { CardDTO } from "./types/card";
 
 function index() {
+  const [imgUrls, setImgUrls] = useState([]);
   const getData = async () => {
     // 오픈 API 호출
     const API_URL = "https://api.unsplash.com/search/photos";
@@ -23,10 +26,20 @@ function index() {
         `${API_URL}?query=${searchValue}&client_id=${API_key}&page=${pageValue}&per_page=${PER_PAGE}`
       );
       console.log(res);
+      // res.data.results라는 배열을 활용할 예정
+
+      if (res.status === 200) {
+        setImgUrls(res.data.results);
+      }
     } catch (error) {
       console.log(error);
     }
   };
+
+  const cardList = imgUrls.map((card: CardDTO) => {
+    return <Card data={card} key={card.id} />;
+  });
+
   useEffect(() => {
     getData();
   }, []);
@@ -50,15 +63,7 @@ function index() {
           </div>
         </div>
 
-        <div className={styles.page__contents__imageBox}>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div>
+        <div className={styles.page__contents__imageBox}>{cardList}</div>
       </div>
       {/* 공통 푸터 UI 부분 */}
       <Footer />
