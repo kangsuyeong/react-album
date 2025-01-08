@@ -1,6 +1,10 @@
 import Header from "@/components/common/header/Header";
+import SearchBar from "@/components/common/searchBar/SearchBar";
+import Nav from "@/components/common/navigation/Nav";
+import Footer from "@/components/common/footer/Footer";
+import Card from "./components/Card";
+// CSS
 import styles from "./styles/index.module.scss";
-import SearchBar from "@/components/common/sarchBar/searchBar";
 
 function index() {
   return (
@@ -8,6 +12,7 @@ function index() {
       {/* 공통 헤더 UI 부분 */}
       <Header />
       {/* 공통 네이버게이션 UI 부분 */}
+      <Nav />
       <div className={styles.page__contents}>
         <div className={styles.page__contents__introBox}>
           <div className={styles.wrapper}>
@@ -20,9 +25,19 @@ function index() {
             <SearchBar />
           </div>
         </div>
-        <div className={styles.page__contents__imageBox}></div>
+
+        <div className={styles.page__contents__imageBox}>
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
       </div>
       {/* 공통 푸터 UI 부분 */}
+      <Footer />
     </div>
   );
 }
