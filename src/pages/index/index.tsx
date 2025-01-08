@@ -5,8 +5,32 @@ import Footer from "@/components/common/footer/Footer";
 import Card from "./components/Card";
 // CSS
 import styles from "./styles/index.module.scss";
+import axios from "axios";
+import { useEffect } from "react";
 
 function index() {
+  const getData = async () => {
+    // 오픈 API 호출
+    const API_URL = "https://api.unsplash.com/search/photos";
+    const API_key = "BQxx4yY-cWYtU5z5C3dZB8GuBU_GbLKDjupgrCJPcG4";
+    const PER_PAGE = 30;
+
+    const searchValue = "Korea";
+    const pageValue = 100;
+
+    try {
+      const res = await axios.get(
+        `${API_URL}?query=${searchValue}&client_id=${API_key}&page=${pageValue}&per_page=${PER_PAGE}`
+      );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className={styles.page}>
       {/* 공통 헤더 UI 부분 */}

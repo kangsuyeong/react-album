@@ -2,7 +2,7 @@ import styles from "./Header.module.scss";
 
 export default function Header() {
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       {/* 로고박스 */}
       <div className={styles.header__logoBox}>
         <img
@@ -18,6 +18,6 @@ export default function Header() {
         <button className={styles.header__profileBox__button}>북마크</button>
         <span className={styles.header__profileBox__userName}>강수영</span>
       </div>
-    </div>
+    </header>
   );
 }
