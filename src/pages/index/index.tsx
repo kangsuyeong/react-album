@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Header from "@/components/common/header/Header";
-import SearchBar from "@/components/common/searchBar/SearchBar";
-import Nav from "@/components/common/navigation/Nav";
-import Footer from "@/components/common/footer/Footer";
+import Header from "@components/common/header/Header";
+import SearchBar from "@components/common/searchBar/SearchBar";
+import Nav from "@components/common/navigation/Nav";
+import Footer from "@components/common/footer/Footer";
 import Card from "./components/Card";
 // CSS
 import styles from "./styles/index.module.scss";
@@ -10,13 +10,15 @@ import styles from "./styles/index.module.scss";
 import { CardDTO } from "./types/card";
 import { useRecoilValue } from "recoil";
 import { imageData } from "@/recoil/selectors/imageSelectors";
+import DetailDialog from "@components/common/dialog/DetailDialog";
 
 function index() {
   const imgSelector = useRecoilValue(imageData);
   const [imgData, setImgData] = useState<CardDTO[]>([]);
+  const [open, setOpen] = useState<boolean>(false); // 이미지 상세 다이어로그 발생(괸리) state
 
   const CARD_LIST = imgSelector.data.results.map((card: CardDTO) => {
-    return <Card data={card} key={card.id} />;
+    return <Card data={card} key={card.id} handleDialog={setOpen} />;
   });
 
   return (
@@ -42,6 +44,8 @@ function index() {
       </div>
       {/* 공통 푸터 UI 부분 */}
       <Footer />
+      {/* 다이얼로그 */}
+      {open && <DetailDialog />}
     </div>
   );
 }
