@@ -2,13 +2,14 @@ import { useState } from "react";
 import styles from "./searchBar.module.scss";
 import { useRecoilState } from "recoil";
 import { searchState } from "@/recoil/atoms/searchState";
+import { pageState } from "@/recoil/atoms/pageState";
 
 function SearchBar() {
   const [search, setSearch] = useRecoilState(searchState);
+  const [page, setPage] = useRecoilState(pageState);
   const [text, setText] = useState("");
 
-  const onChange = (event) => {
-    console.log(event.target.value);
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };
 
@@ -16,8 +17,10 @@ function SearchBar() {
     if (text === "") {
       // input 태그 안에 빈 값을 검색하였을 때 => default searching
       setSearch("Korea");
+      setPage(1);
     } else {
       setSearch(text); // 작성한 Input value 값 전달
+      setPage(1);
     }
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -25,8 +28,10 @@ function SearchBar() {
       if (text === "") {
         // input 태그 안에 빈 값을 검색하였을 때 => default searching
         setSearch("Korea");
+        setPage(1);
       } else {
         setSearch(text); // 작성한 Input value 값 전달
+        setPage(1);
       }
     }
   };

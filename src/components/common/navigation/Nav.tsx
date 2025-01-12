@@ -21,7 +21,6 @@ function Nav() {
   const [search, setSearch] = useRecoilState(searchState);
 
   useEffect(() => {
-    console.log(location.pathname);
     navigation.forEach((nav: Navigation) => {
       nav.isActive = false;
 
