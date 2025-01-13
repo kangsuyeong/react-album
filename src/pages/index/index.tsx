@@ -4,14 +4,15 @@ import SearchBar from "@components/common/searchBar/SearchBar";
 import Nav from "@components/common/navigation/Nav";
 import Footer from "@components/common/footer/Footer";
 import Card from "./components/Card";
-// CSS
-import styles from "./styles/index.module.scss";
-
 import { CardDTO } from "./types/card";
 import { imageData } from "@/recoil/selectors/imageSelectors";
 import DetailDialog from "@components/common/dialog/DetailDialog";
 import { useRecoilValueLoadable } from "recoil";
 import Loading from "./components/Loading";
+import introImage from "@assets/images/image-intro.jpg";
+
+// CSS
+import styles from "./styles/index.module.scss";
 
 function index() {
   // const imgSelector = useRecoilValue(imageData);
@@ -45,7 +46,10 @@ function index() {
       {/* 공통 네이버게이션 UI 부분 */}
       <Nav />
       <div className={styles.page__contents}>
-        <div className={styles.page__contents__introBox}>
+        <div
+          className={styles.page__contents__introBox}
+          style={{ backgroundImage: `url(${introImage})` }}
+        >
           <div className={styles.wrapper}>
             <span className={styles.wrapper__title}>PhotoSplash</span>
             <span className={styles.wrapper__desc}>
