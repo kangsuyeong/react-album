@@ -2,8 +2,12 @@ import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from "recoil";
 import { imageData } from "@/recoil/selectors/imageSelectors";
 import { pageState } from "@/recoil/atoms/pageState";
 import { useEffect, useState } from "react";
-import styles from "./Footer.module.scss";
 import { searchState } from "@/recoil/atoms/searchState";
+// CSS
+import styles from "./Footer.module.scss";
+// 아이콘
+import arrowLeft from "@assets/icons/icon-arrowLeft.svg";
+import arrowRight from "@assets/icons/icon-arrowRight.svg";
 
 function Footer() {
   const imgSelector = useRecoilValueLoadable(imageData);
@@ -54,7 +58,7 @@ function Footer() {
     <footer className={styles.footer}>
       <div className={styles.pagination}>
         <button className={styles.pagination__button} onClick={moveToPrev}>
-          <img src="src/assets/icons/icon-arrowLeft.svg" alt="" />
+          <img src={arrowLeft} alt="" />
         </button>
         {/* 변경될 UI 부분 */}
         {/* <span>1</span> */}
@@ -72,7 +76,7 @@ function Footer() {
           </button>
         ))}
         <button className={styles.pagination__button} onClick={moveToNext}>
-          <img src="src/assets/icons/icon-arrowRight.svg" alt="" />
+          <img src={arrowRight} alt="" />
         </button>
       </div>
     </footer>

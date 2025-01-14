@@ -15,7 +15,6 @@ import introImage from "@assets/images/image-intro.jpg";
 import styles from "./styles/index.module.scss";
 
 function index() {
-  // const imgSelector = useRecoilValue(imageData);
   const imgSelector = useRecoilValueLoadable(imageData);
   const [imgData, setImgData] = useState<CardDTO>();
   const [open, setOpen] = useState<boolean>(false); // 이미지 상세 다이어로그 발생(괸리) state

@@ -1,8 +1,12 @@
 import { useState } from "react";
-import styles from "./searchBar.module.scss";
 import { useRecoilState } from "recoil";
 import { searchState } from "@/recoil/atoms/searchState";
 import { pageState } from "@/recoil/atoms/pageState";
+
+// CSS
+import styles from "./searchBar.module.scss";
+
+import searchIcon from "@assets/icons/icon-search.svg";
 
 function SearchBar() {
   const [search, setSearch] = useRecoilState(searchState);
@@ -46,7 +50,7 @@ function SearchBar() {
           onChange={onChange}
           onKeyDown={handleKeyDown}
         />
-        <img src="src/assets/icons/icon-search.svg" alt="" onClick={onSearch} />
+        <img src={searchIcon} alt="" onClick={onSearch} />
       </div>
     </div>
   );
