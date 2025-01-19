@@ -1,13 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 import logoImg from "@assets/images/image-logo.png";
+import { useRecoilState } from "recoil";
+import { pageState } from "@/recoil/atoms/pageState";
+import { searchState } from "@/recoil/atoms/searchState";
 
 export default function Header() {
   const navigate = useNavigate();
+  const [page, setPage] = useRecoilState(pageState);
+  const [search, setSearch] = useRecoilState(searchState);
 
   // 북마크 페이지로 이동
   const moveToPage = (filter: string) => {
-    if (filter === "main") navigate("/");
+    if (filter === "main") {
+      navigate("/");
+      setPage(1);
+      setSearch("Korea");
+    }
     if (filter === "bookmark") navigate("/bookmark");
   };
 

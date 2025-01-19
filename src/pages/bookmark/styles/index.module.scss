@@ -5,14 +5,16 @@ $HEADER-HEIGHT: 56px;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
+  border: 1px solid red;
   width: 100%;
   height: 100vh;
 
   &__contents {
+    border: 1px solid blue;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
+    // align-items: flex-start;
     justify-content: center;
 
     width: 100%;
